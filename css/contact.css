@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #000000;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  padding: 0.8rem 0;
+  border-bottom: 2px solid #000000;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+  background-color: #000000; /* black when scrolled */
+  border-bottom: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navcontent {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.list li a {
+  text-decoration: none;
+  color: #000000; 
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.list li a:hover,
+.list li a:focus {
+  color: #ffffff;
+  background-color: #000000;
+  border: 2px solid #000000;
+  border-radius: 6px;
+}
+
+/* NAV LINKS WHEN SCROLLED */
+.navbar.scrolled .list li a {
+  color: #ffffff;
+}
+
+.navbar.scrolled .list li a:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.list li a.active {
+  background-color: #000;  /* black background */
+  color: #fff;             /* white text */
+  border: 2px solid #000;
+  border-radius: 6px;
+}
+
+.list li a.active:hover {
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* FORM STYLING */
+.container {
+  max-width: 660px;
+  margin: 4rem auto;
+  padding: 30px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+  transition: opacity 0.3s ease;
+}
+
+form.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.error {
+  color: #b00020;
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+.hidden {
+  display: none;
+}
+
+.success {
+  background: #e6ffed;
+  border: 1px solid #b7f0c7;
+  padding: 12px;
+  border-radius: 6px;
+  color: #044f1b;
+  margin-bottom: 12px;
+}
+
+button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 0;
+  background: #000000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 3px solid #ffd54f;
+}
+
+/* RESPONSIVE NAVBAR TWEAKS */
+@media (max-width: 768px) {
+  .list {
+    gap: 2.5rem;
+  }
+
+  .list li a {
+    font-size: 1rem;
+  }
+
+  .container {
+    width: 90%;
+    margin: 3rem auto;
+    padding: 24px;
+    min-height: 480px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .list {
+    gap: 1.5rem;
+  }
+
+  .list li a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .container {
+    width: 95%;
+    margin: 3rem auto;
+    padding: 20px;
+    text-align: center;
+  }
+}

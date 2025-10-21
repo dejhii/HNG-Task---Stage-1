@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/aboutme.css" />
+    <link rel="icon" type="icon" href="favicon.ico" />
+    <title>About</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navcontent">
+        <ul class="list">
+          <li><a href="index.html">Profile</a></li>
+          <li><a href="aboutme.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Get current page filename, e.g., 'contact.html'
+  const currentPage = window.location.pathname.split("/").pop();
+
+  // Select all navbar links
+  const navLinks = document.querySelectorAll(".list li a");
+
+  navLinks.forEach(link => {
+    // Get href filename
+    const linkPage = link.getAttribute("href");
+
+    // If current page matches href, add 'active' class
+    if (linkPage === currentPage) {
+      link.classList.add("active");
+    }
+  });
+    </script>
+
+    <!-- Bio Page Content -->
+    <main data-testid="test-about-page">
+      <h1>About Me</h1>
+      <section data-testid="test-about-bio">
+        <h2>Bio</h2>
+        <p>
+          Hello! I'm Lateef, a frontend developer passionate about crafting
+          intuitive, responsive user interfaces that bring ideas to life. As I
+          step into the next phase of my journey through this internship
+          program, my goal is to deepen my understanding of scalable design
+          systems, strengthen my collaboration within agile teams, and gain
+          exposure to real-world product development cycles.
+        </p>
+        <p>
+          While I’m confident in my ability to build clean, accessible layouts
+          and work with modern frameworks like React and Tailwind CSS, I’m still
+          growing in areas like debugging complex state logic and optimizing
+          performance across devices. I see these as opportunities—not
+          obstacles—and I’m committed to improving through mentorship, hands-on
+          experience, and continuous learning.
+        </p>
+      </section>
+
+      <!-- Goals Section -->
+      <section data-testid="test-about-goals">
+        <h2>Goals in this Program</h2>
+        <p>
+          My primary goal in this HNG internship program centers on deepening my
+          practical experience and expanding my technical toolkit. I aim to:
+        </p>
+        <ul>
+          <li>
+            Strengthen my proficiency in modern frameworks like React and Vue
+          </li>
+          <li>
+            Learn to collaborate effectively within cross-functional teams
+          </li>
+          <li>
+            Gain exposure to real-world product lifecycles and agile workflows
+          </li>
+          <li>Improve my ability to write scalable, maintainable code</li>
+          <li>
+            Build confidence in debugging, performance optimization, and
+            accessibility best practices
+          </li>
+        </ul>
+        <p>
+          This internship is more than a learning opportunity — it’s a chance to
+          contribute meaningfully, challenge myself, and grow into a developer
+          who builds with empathy and precision.
+        </p>
+      </section>
+
+      <!-- Areas of Low Confidence Section -->
+      <section data-testid="test-about-confidence">
+        <h2>Areas of Low Confidence</h2>
+        <p>
+          As I continue developing my frontend skills, I’m actively working to
+          improve in areas where I feel less confident:
+        </p>
+        <ul>
+          <li>
+            Debugging complex state logic: I sometimes find it challenging to
+            trace issues in deeply nested components or asynchronous flows.
+          </li>
+          <li>
+            Performance optimization: I’m learning how to fine-tune rendering
+            behavior and reduce load times, especially for mobile users.
+          </li>
+          <li>
+            Accessibility (a11y): While I understand the basics, I want to
+            deepen my knowledge to ensure inclusive design across all projects.
+          </li>
+          <li>
+            Communicating technical decisions: I’m practicing how to explain my
+            choices clearly to both technical and non-technical teammates.
+          </li>
+          <li>
+            Design intuition: I’m building confidence in making UI decisions
+            that balance aesthetics with usability.
+          </li>
+        </ul>
+        <p>
+          These aren’t weaknesses—they’re growth edges. I’m committed to turning
+          each one into a strength through mentorship, hands-on experience, and
+          continuous learning.
+        </p>
+      </section>
+
+      <!-- Note to Future Self Section -->
+      <section data-testid="test-about-future-note">
+        <h2>Note to Future Self</h2>
+        <p>
+          Remember to stay curious, embrace failures as learning opportunities,
+          and never lose sight of your long-term goals. Your efforts now will
+          shape your future success. Remember how far you've come. The late
+          nights spent learning, the moments of doubt, and the breakthroughs
+          that followed—they all shaped you. Keep asking questions, stay
+          curious, and never lose sight of why you started: to build things that
+          matter.
+        </p>
+      </section>
+
+      <!-- Extra Thoughts Section -->
+      <section data-testid="test-about-extra">
+        <h2>Extra Thoughts</h2>
+        <p>
+          Reflecting regularly has helped me understand my strengths and
+          weaknesses better. I aim to maintain this habit and continually adapt
+          to new challenges. I believe growth happens at the edge of discomfort.
+          This internship isn’t just a stepping stone—it’s a proving ground. I’m
+          here to contribute, learn, and evolve. Let’s build something
+          meaningful.
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      "We are what we repeatedly do. Excellence, then, is not an act, but a
+      habit." — Will Durant
+    </footer>
+  </body>
+</html>

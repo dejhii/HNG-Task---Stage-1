@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="icon" type="icon" href="favicon.ico" />
+  <title>Contact</title>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navcontent">
+      <ul class="list">
+        <li><a href="index.html">Profile</a></li>
+        <li><a href="aboutme.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- CONTACT FORM -->
+  <main class="container" id="contact-section">
+    <h1>Get In Touch</h1>
+
+    <div
+      id="form-success"
+      class="success hidden"
+      role="status"
+      aria-live="polite"
+      data-testid="test-contact-success"
+    ></div>
+
+    <form id="contact-form" novalidate>
+      <div>
+        <label for="name">Full Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          data-testid="test-contact-name"
+          aria-describedby="error-name"
+          required
+        />
+        <div
+          id="error-name"
+          class="error"
+          data-testid="test-contact-error-name"
+          aria-live="assertive"
+          role="alert"
+        ></div>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          data-testid="test-contact-email"
+          aria-describedby="error-email"
+          required
+        />
+        <div
+          id="error-email"
+          class="error"
+          data-testid="test-contact-error-email"
+          aria-live="assertive"
+          role="alert"
+        ></div>
+      </div>
+
+      <div>
+        <label for="subject">Subject</label>
+        <input
+          id="subject"
+          name="subject"
+          type="text"
+          data-testid="test-contact-subject"
+          aria-describedby="error-subject"
+          required
+        />
+        <div
+          id="error-subject"
+          class="error"
+          data-testid="test-contact-error-subject"
+          aria-live="assertive"
+          role="alert"
+        ></div>
+      </div>
+
+      <div>
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          data-testid="test-contact-message"
+          aria-describedby="error-message"
+          required
+        ></textarea>
+        <div
+          id="error-message"
+          class="error"
+          data-testid="test-contact-error-message"
+          aria-live="assertive"
+          role="alert"
+        ></div>
+      </div>
+
+      <button type="submit" data-testid="test-contact-submit">
+        Send Message
+      </button>
+    </form>
+  </main>
+
+  <!-- JS -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Form validation logic
+    (function () {
+      const form = document.getElementById("contact-form");
+      const successBox = document.getElementById("form-success");
+
+      const fields = {
+        name: { el: document.getElementById("name"), err: document.getElementById("error-name") },
+        email: { el: document.getElementById("email"), err: document.getElementById("error-email") },
+        subject: { el: document.getElementById("subject"), err: document.getElementById("error-subject") },
+        message: { el: document.getElementById("message"), err: document.getElementById("error-message") },
+      };
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function clearErrors() {
+        Object.values(fields).forEach((f) => {
+          f.err.textContent = "";
+          f.el.removeAttribute("aria-invalid");
+        });
+        successBox.classList.add("hidden");
+        successBox.textContent = "";
+      }
+
+      function validate() {
+        clearErrors();
+        const errors = {};
+
+        if (!fields.name.el.value.trim())
+          errors.name = "Full name is required.";
+
+        const emailVal = fields.email.el.value.trim();
+        if (!emailVal) errors.email = "Email is required.";
+        else if (!emailRegex.test(emailVal))
+          errors.email = "Please enter a valid email (name@example.com).";
+
+        if (!fields.subject.el.value.trim())
+          errors.subject = "Subject is required.";
+
+        const msg = fields.message.el.value.trim();
+        if (!msg) errors.message = "Message is required.";
+        else if (msg.length < 10)
+          errors.message = "Message must be at least 10 characters.";
+
+        Object.keys(errors).forEach((key) => {
+          fields[key].err.textContent = errors[key];
+          fields[key].el.setAttribute("aria-invalid", "true");
+        });
+
+        return errors;
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const errors = validate();
+        const keys = Object.keys(errors);
+        if (keys.length > 0) {
+          fields[keys[0]].el.focus();
+          return;
+        }
+
+        const name = fields.name.el.value.trim();
+        form.classList.add("hidden");
+        successBox.textContent = `Thanks, ${name || "Guest"} — your message has been sent successfully!`;
+        successBox.classList.remove("hidden");
+        successBox.setAttribute("tabindex", "-1");
+        successBox.focus();
+      });
+
+      Object.values(fields).forEach(({ el }) =>
+        el.addEventListener("blur", validate)
+      );
+    })();
+
+    // Get current page filename, e.g., 'contact.html'
+  const currentPage = window.location.pathname.split("/").pop();
+
+  // Select all navbar links
+  const navLinks = document.querySelectorAll(".list li a");
+
+  navLinks.forEach(link => {
+    // Get href filename
+    const linkPage = link.getAttribute("href");
+
+    // If current page matches href, add 'active' class
+    if (linkPage === currentPage) {
+      link.classList.add("active");
+    }
+  });
+  </script>
+</body>
+</html>
